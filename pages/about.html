@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About - BlogFolio</title>
+    <meta name="description" content="Learn more about BlogFolio and the team behind it.">
+    <link rel="stylesheet" href="../assets/css/style.css">
+    <link rel="stylesheet" href="../assets/css/animations.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <!-- Preload fonts for performance -->
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap"></noscript>
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="../assets/images/favicon.svg">
+</head>
+<body class="about-page">
+    <!-- Header with navigation -->
+    <header class="site-header">
+        <div class="container">
+            <div class="logo-container">
+                <a href="../index.html" class="logo">
+                    <span class="logo-text">BlogFolio</span>
+                </a>
+            </div>
+            <nav class="main-nav">
+                <ul class="nav-list">
+                    <li><a href="../index.html">Home</a></li>
+                    <li><a href="#" class="tag-filter" data-tag="all">All Posts</a></li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle">Categories <i class="fas fa-chevron-down"></i></a>
+                        <ul class="dropdown-menu" id="categories-menu">
+                            <!-- Categories will be populated by JavaScript -->
+                        </ul>
+                    </li>
+                    <li><a href="about.html" class="active">About</a></li>
+                </ul>
+            </nav>
+            <div class="header-actions">
+                <button class="theme-toggle" aria-label="Toggle dark mode">
+                    <i class="fas fa-moon"></i>
+                    <i class="fas fa-sun"></i>
+                </button>
+                <div class="auth-buttons" id="auth-buttons">
+                    <a href="login.html" class="btn btn-outline">Log In</a>
+                    <a href="login.html?register=true" class="btn btn-primary">Sign Up</a>
+                </div>
+                <div class="user-profile hidden" id="user-profile">
+                    <div class="dropdown">
+                        <button class="dropdown-toggle profile-button">
+                            <img src="../assets/images/default-avatar.svg" alt="Profile" id="profile-image">
+                        </button>
+                        <ul class="dropdown-menu">
+                            <li><a href="dashboard.html"><i class="fas fa-tachometer-alt"></i> Dashboard</a></li>
+                            <li><a href="new-post.html"><i class="fas fa-pen"></i> New Post</a></li>
+                            <li><a href="profile.html"><i class="fas fa-user"></i> Profile</a></li>
+                            <li><a href="#" id="logout-button"><i class="fas fa-sign-out-alt"></i> Logout</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <button class="mobile-menu-toggle" aria-label="Toggle menu">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero section -->
+    <section class="about-hero">
+        <div class="container">
+            <div class="about-hero-content animated fade-in">
+                <h1>About BlogFolio</h1>
+                <p class="animated fade-in delay-1">A modern platform for sharing knowledge and connecting with others</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Main content -->
+    <main class="about-main">
+        <div class="container">
+            <div class="about-grid">
+                <div class="about-content">
+                    <section class="about-section animated fade-in delay-2">
+                        <h2>Our Story</h2>
+                        <p>BlogFolio was created with a simple mission: to provide a beautiful, modern platform for sharing ideas, code, and creative content. We believe that good content deserves a great presentation, and that's exactly what BlogFolio delivers.</p>
+                        <p>Founded in 2025, we've focused on combining elegant design with powerful features to create the ultimate blogging experience for both writers and readers.</p>
+                    </section>
+                    
+                    <section class="about-section animated fade-in delay-3">
+                        <h2>Our Philosophy</h2>
+                        <p>At BlogFolio, we believe in:</p>
+                        <ul class="feature-list">
+                            <li>
+                                <div class="feature-icon">
+                                    <i class="fas fa-pen-fancy"></i>
+                                </div>
+                                <div class="feature-content">
+                                    <h3>Quality Content</h3>
+                                    <p>Great ideas deserve great presentation. BlogFolio provides powerful tools to make your content shine.</p>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="feature-icon">
+                                    <i class="fas fa-code"></i>
+                                </div>
+                                <div class="feature-content">
+                                    <h3>Developer Friendly</h3>
+                                    <p>Beautiful code highlighting, Markdown support, and technical features make BlogFolio perfect for developers.</p>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="feature-icon">
+                                    <i class="fas fa-paint-brush"></i>
+                                </div>
+                                <div class="feature-content">
+                                    <h3>Beautiful Design</h3>
+                                    <p>Clean, modern aesthetics with thoughtful animations and interactions create a delightful user experience.</p>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="feature-icon">
+                                    <i class="fas fa-users"></i>
+                                </div>
+                                <div class="feature-content">
+                                    <h3>Community Focus</h3>
+                                    <p>Comments, social sharing, and user profiles foster meaningful connections between readers and writers.</p>
+                                </div>
+                            </li>
+                        </ul>
+                    </section>
+                    
+                    <section class="about-section animated fade-in delay-4">
+                        <h2>Meet the Team</h2>
+                        <div class="team-grid">
+                            <div class="team-member">
+                                <div class="team-member-image">
+                                    <img src="../assets/images/default-avatar.svg" alt="John Doe">
+                                </div>
+                                <h3>John Doe</h3>
+                                <p class="team-member-role">Founder & Developer</p>
+                                <p class="team-member-bio">John is a full-stack developer with a passion for clean code and beautiful interfaces.</p>
+                                <div class="team-member-social">
+                                    <a href="#" class="social-icon"><i class="fab fa-twitter"></i></a>
+                                    <a href="#" class="social-icon"><i class="fab fa-github"></i></a>
+                                    <a href="#" class="social-icon"><i class="fab fa-linkedin"></i></a>
+                                </div>
+                            </div>
+                            <div class="team-member">
+                                <div class="team-member-image">
+                                    <img src="../assets/images/default-avatar.svg" alt="Jane Smith">
+                                </div>
+                                <h3>Jane Smith</h3>
+                                <p class="team-member-role">Designer</p>
+                                <p class="team-member-bio">Jane creates the beautiful visual elements that make BlogFolio stand out from the crowd.</p>
+                                <div class="team-member-social">
+                                    <a href="#" class="social-icon"><i class="fab fa-twitter"></i></a>
+                                    <a href="#" class="social-icon"><i class="fab fa-dribbble"></i></a>
+                                    <a href="#" class="social-icon"><i class="fab fa-instagram"></i></a>
+                                </div>
+                            </div>
+                            <div class="team-member">
+                                <div class="team-member-image">
+                                    <img src="../assets/images/default-avatar.svg" alt="David Johnson">
+                                </div>
+                                <h3>David Johnson</h3>
+                                <p class="team-member-role">Content Strategist</p>
+                                <p class="team-member-bio">David helps writers create engaging, valuable content that readers love.</p>
+                                <div class="team-member-social">
+                                    <a href="#" class="social-icon"><i class="fab fa-twitter"></i></a>
+                                    <a href="#" class="social-icon"><i class="fab fa-medium"></i></a>
+                                    <a href="#" class="social-icon"><i class="fab fa-linkedin"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                </div>
+                
+                <aside class="about-sidebar">
+                    <div class="sidebar-widget animated fade-in delay-2">
+                        <h3>Our Technology</h3>
+                        <div class="tech-stack">
+                            <div class="tech-item">
+                                <div class="tech-icon"><i class="fab fa-html5"></i></div>
+                                <span>HTML5</span>
+                            </div>
+                            <div class="tech-item">
+                                <div class="tech-icon"><i class="fab fa-css3-alt"></i></div>
+                                <span>CSS3</span>
+                            </div>
+                            <div class="tech-item">
+                                <div class="tech-icon"><i class="fab fa-js"></i></div>
+                                <span>JavaScript</span>
+                            </div>
+                            <div class="tech-item">
+                                <div class="tech-icon"><i class="fab fa-markdown"></i></div>
+                                <span>Markdown</span>
+                            </div>
+                            <div class="tech-item">
+                                <div class="tech-icon"><i class="fab fa-github"></i></div>
+                                <span>GitHub</span>
+                            </div>
+                            <div class="tech-item">
+                                <div class="tech-icon"><i class="fas fa-database"></i></div>
+                                <span>Firebase</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="sidebar-widget animated fade-in delay-3">
+                        <h3>Get in Touch</h3>
+                        <form id="contact-form" class="contact-form">
+                            <div class="form-group">
+                                <label for="contact-name">Name</label>
+                                <input type="text" id="contact-name" name="name" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="contact-email">Email</label>
+                                <input type="email" id="contact-email" name="email" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="contact-message">Message</label>
+                                <textarea id="contact-message" name="message" rows="4" required></textarea>
+                            </div>
+                            <button type="submit" class="btn btn-primary btn-block">Send Message</button>
+                            <div class="form-feedback" id="contact-feedback"></div>
+                        </form>
+                    </div>
+                </aside>
+            </div>
+        </div>
+    </main>
+
+    <!-- Newsletter section -->
+    <section class="newsletter">
+        <div class="container">
+            <div class="newsletter-content">
+                <h2 class="animated fade-in">Subscribe to our newsletter</h2>
+                <p class="animated fade-in delay-1">Get the latest posts delivered right to your inbox</p>
+                <form id="newsletter-form" class="animated fade-in delay-2">
+                    <div class="form-group">
+                        <input type="email" id="newsletter-email" placeholder="Your email address" required>
+                        <button type="submit" class="btn btn-primary">Subscribe</button>
+                    </div>
+                    <div class="form-feedback" id="newsletter-feedback"></div>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer section -->
+    <footer class="site-footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-about">
+                    <a href="../index.html" class="logo">
+                        <span class="logo-text">BlogFolio</span>
+                    </a>
+                    <p>A modern platform for sharing your thoughts, code snippets, and creative ideas.</p>
+                    <div class="social-links">
+                        <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                        <a href="#" aria-label="GitHub"><i class="fab fa-github"></i></a>
+                        <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+                        <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+                <div class="footer-nav">
+                    <h3>Navigation</h3>
+                    <ul>
+                        <li><a href="../index.html">Home</a></li>
+                        <li><a href="#" class="tag-filter" data-tag="all">All Posts</a></li>
+                        <li><a href="about.html">About</a></li>
+                        <li><a href="login.html">Login</a></li>
+                        <li><a href="login.html?register=true">Sign Up</a></li>
+                    </ul>
+                </div>
+                <div class="footer-categories">
+                    <h3>Categories</h3>
+                    <ul id="footer-categories">
+                        <!-- Categories will be populated by JavaScript -->
+                    </ul>
+                </div>
+                <div class="footer-contact">
+                    <h3>Contact</h3>
+                    <p><i class="fas fa-envelope"></i> <a href="mailto:contact@blogfolio.com">contact@blogfolio.com</a></p>
+                    <p><i class="fas fa-map-marker-alt"></i> 123 Blog Street, Content City</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; <span id="current-year">2025</span> BlogFolio. All rights reserved.</p>
+                <ul class="footer-links">
+                    <li><a href="#">Privacy Policy</a></li>
+                    <li><a href="#">Terms of Service</a></li>
+                    <li><a href="#">Cookie Policy</a></li>
+                </ul>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Modal component -->
+    <div class="modal" id="global-modal">
+        <div class="modal-backdrop"></div>
+        <div class="modal-container">
+            <div class="modal-header">
+                <h3 id="modal-title">Modal Title</h3>
+                <button class="modal-close" aria-label="Close modal">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-body" id="modal-body">
+                <!-- Modal content will be dynamically inserted here -->
+            </div>
+            <div class="modal-footer" id="modal-footer">
+                <!-- Modal footer buttons will be dynamically inserted here -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Toast notification component -->
+    <div class="toast-container" id="toast-container"></div>
+
+    <!-- Loading overlay -->
+    <div class="loading-overlay" id="loading-overlay">
+        <div class="loader"></div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/firebase/9.6.8/firebase-app-compat.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/firebase/9.6.8/firebase-auth-compat.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/firebase/9.6.8/firebase-firestore-compat.min.js"></script>
+    
+    <!-- App scripts -->
+    <script src="../assets/js/config.js"></script>
+    <script src="../assets/js/utils.js"></script>
+    <script src="../assets/js/auth.js"></script>
+    <script src="../assets/js/ui.js"></script>
+    <script src="../assets/js/data.js"></script>
+    <script src="../assets/js/main.js"></script>
+    
+    <script>
+        // Contact form handling
+        document.addEventListener('DOMContentLoaded', function() {
+            const contactForm = document.getElementById('contact-form');
+            const contactFeedback = document.getElementById('contact-feedback');
+            
+            if (contactForm) {
+                contactForm.addEventListener('submit', function(e) {
+                    e.preventDefault();
+                    
+                    // Get form values
+                    const name = document.getElementById('contact-name').value;
+                    const email = document.getElementById('contact-email').value;
+                    const message = document.getElementById('contact-message').value;
+                    
+                    // Simple validation
+                    if (!name || !email || !message) {
+                        contactFeedback.textContent = 'Please fill in all fields.';
+                        contactFeedback.style.color = 'var(--color-danger)';
+                        return;
+                    }
+                    
+                    // In a real app, this would send data to the server
+                    // For demo purposes, we'll just simulate a successful submission
+                    
+                    // Show loading
+                    BlogUtils.toggleLoading(true);
+                    
+                    // Simulate network delay
+                    setTimeout(function() {
+                        // Hide loading
+                        BlogUtils.toggleLoading(false);
+                        
+                        // Show success message
+                        contactFeedback.textContent = 'Thank you for your message! We\'ll get back to you soon.';
+                        contactFeedback.style.color = 'var(--color-success)';
+                        
+                        // Reset form
+                        contactForm.reset();
+                        
+                        // Show toast notification
+                        BlogUtils.showToast('Message sent successfully!', 'success');
+                    }, 1500);
+                });
+            }
+        });
+    </script>
+</body>
+</html>
