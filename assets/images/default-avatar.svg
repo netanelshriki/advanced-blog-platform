@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="200px" height="200px" viewBox="0 0 200 200" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>Default Avatar</title>
+    <defs>
+        <linearGradient x1="0%" y1="0%" x2="100%" y2="100%" id="linearGradient-1">
+            <stop stop-color="#4361EE" offset="0%"></stop>
+            <stop stop-color="#3A0CA3" offset="100%"></stop>
+        </linearGradient>
+        <circle id="path-2" cx="100" cy="100" r="100"></circle>
+    </defs>
+    <g id="Avatar" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <mask id="mask-3" fill="white">
+            <use xlink:href="#path-2"></use>
+        </mask>
+        <use id="Circle" fill="url(#linearGradient-1)" xlink:href="#path-2"></use>
+        <path d="M100,125 C126.51,125 148,103.51 148,77 C148,50.49 126.51,29 100,29 C73.49,29 52,50.49 52,77 C52,103.51 73.49,125 100,125 Z M100,140 C61.34,140 30,171.34 30,210 L30,240 L170,240 L170,210 C170,171.34 138.66,140 100,140 Z" id="Person" fill="#FFFFFF" mask="url(#mask-3)"></path>
+    </g>
+</svg>
