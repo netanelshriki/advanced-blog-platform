@@ -1,0 +1,529 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Profile - BlogFolio</title>
+    <meta name="description" content="Manage your BlogFolio profile and content.">
+    <link rel="stylesheet" href="../assets/css/style.css">
+    <link rel="stylesheet" href="../assets/css/animations.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <!-- Preload fonts for performance -->
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap"></noscript>
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="../assets/images/favicon.svg">
+</head>
+<body class="profile-page">
+    <!-- Header with navigation -->
+    <header class="site-header">
+        <div class="container">
+            <div class="logo-container">
+                <a href="../index.html" class="logo">
+                    <span class="logo-text">BlogFolio</span>
+                </a>
+            </div>
+            <nav class="main-nav">
+                <ul class="nav-list">
+                    <li><a href="../index.html">Home</a></li>
+                    <li><a href="#" class="tag-filter" data-tag="all">All Posts</a></li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle">Categories <i class="fas fa-chevron-down"></i></a>
+                        <ul class="dropdown-menu" id="categories-menu">
+                            <!-- Categories will be populated by JavaScript -->
+                        </ul>
+                    </li>
+                    <li><a href="about.html">About</a></li>
+                </ul>
+            </nav>
+            <div class="header-actions">
+                <button class="theme-toggle" aria-label="Toggle dark mode">
+                    <i class="fas fa-moon"></i>
+                    <i class="fas fa-sun"></i>
+                </button>
+                <div class="auth-buttons" id="auth-buttons">
+                    <a href="login.html" class="btn btn-outline">Log In</a>
+                    <a href="login.html?register=true" class="btn btn-primary">Sign Up</a>
+                </div>
+                <div class="user-profile hidden" id="user-profile">
+                    <div class="dropdown">
+                        <button class="dropdown-toggle profile-button">
+                            <img src="../assets/images/default-avatar.svg" alt="Profile" id="profile-image">
+                        </button>
+                        <ul class="dropdown-menu">
+                            <li><a href="dashboard.html"><i class="fas fa-tachometer-alt"></i> Dashboard</a></li>
+                            <li><a href="new-post.html"><i class="fas fa-pen"></i> New Post</a></li>
+                            <li><a href="profile.html" class="active"><i class="fas fa-user"></i> Profile</a></li>
+                            <li><a href="#" id="logout-button"><i class="fas fa-sign-out-alt"></i> Logout</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <button class="mobile-menu-toggle" aria-label="Toggle menu">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main content -->
+    <main class="profile-main">
+        <div class="container">
+            <div class="profile-header">
+                <div class="profile-header-content">
+                    <div class="profile-avatar-container">
+                        <img src="../assets/images/default-avatar.svg" alt="User Avatar" id="profile-avatar" class="profile-avatar">
+                        <div class="profile-avatar-overlay">
+                            <label for="profile-image-upload" class="avatar-upload-label">
+                                <i class="fas fa-camera"></i>
+                            </label>
+                            <input type="file" id="profile-image-upload" accept="image/*" class="hidden">
+                        </div>
+                    </div>
+                    <div class="profile-info">
+                        <h1 id="profile-display-name">User Name</h1>
+                        <p id="profile-email" class="profile-email">user@example.com</p>
+                        <p id="profile-join-date" class="profile-join-date">Member since January 1, 2025</p>
+                    </div>
+                </div>
+                <div class="profile-stats">
+                    <div class="stat-item">
+                        <div class="stat-value" id="profile-posts-count">0</div>
+                        <div class="stat-label">Posts</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-value" id="profile-views-count">0</div>
+                        <div class="stat-label">Views</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-value" id="profile-likes-count">0</div>
+                        <div class="stat-label">Likes</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="profile-tabs">
+                <button class="profile-tab active" data-tab="profile-edit">Edit Profile</button>
+                <button class="profile-tab" data-tab="account-settings">Account Settings</button>
+                <button class="profile-tab" data-tab="my-posts">My Posts</button>
+            </div>
+            
+            <div class="profile-content">
+                <!-- Edit Profile Tab -->
+                <div class="profile-tab-content active" id="profile-edit">
+                    <div class="profile-card">
+                        <div class="card-header">
+                            <h2>Edit Profile</h2>
+                            <p>Update your personal information</p>
+                        </div>
+                        <form id="profile-form" class="profile-form">
+                            <div class="form-group">
+                                <label for="profile-name">Display Name</label>
+                                <input type="text" id="profile-name" name="displayName" placeholder="Your display name">
+                            </div>
+                            <div class="form-group">
+                                <label for="profile-bio">Bio</label>
+                                <textarea id="profile-bio" name="bio" rows="4" placeholder="Tell us about yourself"></textarea>
+                            </div>
+                            <div class="form-group">
+                                <label for="profile-location">Location</label>
+                                <input type="text" id="profile-location" name="location" placeholder="Your location">
+                            </div>
+                            <div class="form-group">
+                                <label for="profile-website">Website</label>
+                                <input type="url" id="profile-website" name="website" placeholder="https://yourwebsite.com">
+                            </div>
+                            <div class="form-group">
+                                <label>Social Links</label>
+                                <div class="social-input-group">
+                                    <div class="social-input">
+                                        <i class="fab fa-twitter"></i>
+                                        <input type="text" id="profile-twitter" name="twitter" placeholder="Twitter username">
+                                    </div>
+                                    <div class="social-input">
+                                        <i class="fab fa-github"></i>
+                                        <input type="text" id="profile-github" name="github" placeholder="GitHub username">
+                                    </div>
+                                    <div class="social-input">
+                                        <i class="fab fa-linkedin"></i>
+                                        <input type="text" id="profile-linkedin" name="linkedin" placeholder="LinkedIn username">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <button type="submit" class="btn btn-primary">Save Changes</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                
+                <!-- Account Settings Tab -->
+                <div class="profile-tab-content" id="account-settings">
+                    <div class="profile-card">
+                        <div class="card-header">
+                            <h2>Change Password</h2>
+                            <p>Update your account password</p>
+                        </div>
+                        <form id="password-form" class="profile-form">
+                            <div class="form-group">
+                                <label for="current-password">Current Password</label>
+                                <input type="password" id="current-password" name="currentPassword" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="new-password">New Password</label>
+                                <input type="password" id="new-password" name="newPassword" required minlength="8" data-validate-strength="true">
+                            </div>
+                            <div class="form-group">
+                                <label for="confirm-password">Confirm New Password</label>
+                                <input type="password" id="confirm-password" name="confirmPassword" required>
+                            </div>
+                            <div class="form-group">
+                                <button type="submit" class="btn btn-primary">Update Password</button>
+                            </div>
+                        </form>
+                    </div>
+                    
+                    <div class="profile-card mt-6">
+                        <div class="card-header">
+                            <h2>Email Preferences</h2>
+                            <p>Manage your email notification settings</p>
+                        </div>
+                        <form id="email-preferences-form" class="profile-form">
+                            <div class="form-group checkbox-group">
+                                <div class="checkbox-wrapper">
+                                    <input type="checkbox" id="email-comments" name="emailComments" checked>
+                                    <label for="email-comments">Email me when someone comments on my posts</label>
+                                </div>
+                            </div>
+                            <div class="form-group checkbox-group">
+                                <div class="checkbox-wrapper">
+                                    <input type="checkbox" id="email-newsletter" name="emailNewsletter" checked>
+                                    <label for="email-newsletter">Subscribe to the weekly newsletter</label>
+                                </div>
+                            </div>
+                            <div class="form-group checkbox-group">
+                                <div class="checkbox-wrapper">
+                                    <input type="checkbox" id="email-marketing" name="emailMarketing">
+                                    <label for="email-marketing">Receive promotional emails about features and updates</label>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <button type="submit" class="btn btn-primary">Save Preferences</button>
+                            </div>
+                        </form>
+                    </div>
+                    
+                    <div class="profile-card mt-6 danger-zone">
+                        <div class="card-header">
+                            <h2>Danger Zone</h2>
+                            <p>Irreversible account actions</p>
+                        </div>
+                        <div class="danger-actions">
+                            <div class="danger-action">
+                                <div class="danger-info">
+                                    <h3>Delete Account</h3>
+                                    <p>Permanently delete your account and all of your content. This action cannot be undone.</p>
+                                </div>
+                                <button id="delete-account-btn" class="btn btn-danger">Delete Account</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- My Posts Tab -->
+                <div class="profile-tab-content" id="my-posts">
+                    <div class="profile-card">
+                        <div class="card-header">
+                            <h2>Your Recent Posts</h2>
+                            <a href="new-post.html" class="btn btn-primary btn-sm">
+                                <i class="fas fa-pen"></i> New Post
+                            </a>
+                        </div>
+                        <div id="user-recent-posts" class="recent-posts-list">
+                            <!-- Posts will be loaded here -->
+                            <div class="skeleton-loader post-skeleton">
+                                <div class="skeleton-img"></div>
+                                <div class="skeleton-content">
+                                    <div class="skeleton-title"></div>
+                                    <div class="skeleton-text"></div>
+                                    <div class="skeleton-text"></div>
+                                </div>
+                            </div>
+                            <div class="skeleton-loader post-skeleton">
+                                <div class="skeleton-img"></div>
+                                <div class="skeleton-content">
+                                    <div class="skeleton-title"></div>
+                                    <div class="skeleton-text"></div>
+                                    <div class="skeleton-text"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="view-all-link">
+                            <a href="#" class="btn-text">View all your posts <i class="fas fa-arrow-right"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer section -->
+    <footer class="site-footer">
+        <div class="container">
+            <div class="footer-bottom">
+                <p>&copy; <span id="current-year">2025</span> BlogFolio. All rights reserved.</p>
+                <ul class="footer-links">
+                    <li><a href="#">Privacy Policy</a></li>
+                    <li><a href="#">Terms of Service</a></li>
+                    <li><a href="#">Cookie Policy</a></li>
+                </ul>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Modal component -->
+    <div class="modal" id="global-modal">
+        <div class="modal-backdrop"></div>
+        <div class="modal-container">
+            <div class="modal-header">
+                <h3 id="modal-title">Modal Title</h3>
+                <button class="modal-close" aria-label="Close modal">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-body" id="modal-body">
+                <!-- Modal content will be dynamically inserted here -->
+            </div>
+            <div class="modal-footer" id="modal-footer">
+                <!-- Modal footer buttons will be dynamically inserted here -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Toast notification component -->
+    <div class="toast-container" id="toast-container"></div>
+
+    <!-- Loading overlay -->
+    <div class="loading-overlay" id="loading-overlay">
+        <div class="loader"></div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/firebase/9.6.8/firebase-app-compat.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/firebase/9.6.8/firebase-auth-compat.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/firebase/9.6.8/firebase-firestore-compat.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/firebase/9.6.8/firebase-storage-compat.min.js"></script>
+    
+    <!-- App scripts -->
+    <script src="../assets/js/config.js"></script>
+    <script src="../assets/js/utils.js"></script>
+    <script src="../assets/js/auth.js"></script>
+    <script src="../assets/js/ui.js"></script>
+    <script src="../assets/js/data.js"></script>
+    <script src="../assets/js/main.js"></script>
+    
+    <script>
+        // Tabs functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            const tabButtons = document.querySelectorAll('.profile-tab');
+            const tabContents = document.querySelectorAll('.profile-tab-content');
+            
+            tabButtons.forEach(button => {
+                button.addEventListener('click', () => {
+                    const tabId = button.getAttribute('data-tab');
+                    
+                    // Remove active class from all buttons and contents
+                    tabButtons.forEach(btn => btn.classList.remove('active'));
+                    tabContents.forEach(content => content.classList.remove('active'));
+                    
+                    // Add active class to current button and content
+                    button.classList.add('active');
+                    document.getElementById(tabId).classList.add('active');
+                });
+            });
+            
+            // Profile image upload
+            const profileImageUpload = document.getElementById('profile-image-upload');
+            const profileAvatar = document.getElementById('profile-avatar');
+            
+            if (profileImageUpload && profileAvatar) {
+                profileImageUpload.addEventListener('change', function() {
+                    if (this.files && this.files[0]) {
+                        const reader = new FileReader();
+                        
+                        reader.onload = function(e) {
+                            profileAvatar.src = e.target.result;
+                        };
+                        
+                        reader.readAsDataURL(this.files[0]);
+                    }
+                });
+            }
+            
+            // Form submissions
+            const profileForm = document.getElementById('profile-form');
+            const passwordForm = document.getElementById('password-form');
+            const emailPreferencesForm = document.getElementById('email-preferences-form');
+            
+            if (profileForm) {
+                profileForm.addEventListener('submit', function(e) {
+                    e.preventDefault();
+                    
+                    // Show loading
+                    BlogUtils.toggleLoading(true);
+                    
+                    // Get form data
+                    const formData = new FormData(profileForm);
+                    const profileData = {
+                        displayName: formData.get('displayName'),
+                        bio: formData.get('bio'),
+                        location: formData.get('location'),
+                        website: formData.get('website'),
+                        social: {
+                            twitter: formData.get('twitter'),
+                            github: formData.get('github'),
+                            linkedin: formData.get('linkedin')
+                        }
+                    };
+                    
+                    // Get profile image if it's changed
+                    const profileImageFile = profileImageUpload.files[0];
+                    if (profileImageFile) {
+                        // In a real app, this would upload the image to storage
+                        // and update the user's photoURL
+                        // For demo purposes, we'll just simulate a successful update
+                        
+                        // Simulate network delay
+                        setTimeout(function() {
+                            // Hide loading
+                            BlogUtils.toggleLoading(false);
+                            
+                            // Show success message
+                            BlogUtils.showToast('Profile updated successfully!', 'success');
+                        }, 1500);
+                    } else {
+                        // Simulate network delay
+                        setTimeout(function() {
+                            // Hide loading
+                            BlogUtils.toggleLoading(false);
+                            
+                            // Show success message
+                            BlogUtils.showToast('Profile updated successfully!', 'success');
+                        }, 1500);
+                    }
+                });
+            }
+            
+            if (passwordForm) {
+                passwordForm.addEventListener('submit', function(e) {
+                    e.preventDefault();
+                    
+                    // Get form data
+                    const currentPassword = document.getElementById('current-password').value;
+                    const newPassword = document.getElementById('new-password').value;
+                    const confirmPassword = document.getElementById('confirm-password').value;
+                    
+                    // Validate passwords
+                    if (newPassword !== confirmPassword) {
+                        BlogUtils.showToast('New passwords do not match', 'error');
+                        return;
+                    }
+                    
+                    // Show loading
+                    BlogUtils.toggleLoading(true);
+                    
+                    // Simulate network delay
+                    setTimeout(function() {
+                        // Hide loading
+                        BlogUtils.toggleLoading(false);
+                        
+                        // Show success message
+                        BlogUtils.showToast('Password updated successfully!', 'success');
+                        
+                        // Reset form
+                        passwordForm.reset();
+                    }, 1500);
+                });
+            }
+            
+            if (emailPreferencesForm) {
+                emailPreferencesForm.addEventListener('submit', function(e) {
+                    e.preventDefault();
+                    
+                    // Show loading
+                    BlogUtils.toggleLoading(true);
+                    
+                    // Simulate network delay
+                    setTimeout(function() {
+                        // Hide loading
+                        BlogUtils.toggleLoading(false);
+                        
+                        // Show success message
+                        BlogUtils.showToast('Email preferences updated successfully!', 'success');
+                    }, 1000);
+                });
+            }
+            
+            // Delete account button
+            const deleteAccountBtn = document.getElementById('delete-account-btn');
+            
+            if (deleteAccountBtn) {
+                deleteAccountBtn.addEventListener('click', function() {
+                    BlogUtils.showConfirmation(
+                        'Delete Account',
+                        'Are you sure you want to delete your account? This action cannot be undone.',
+                        {
+                            confirmText: 'Delete Account',
+                            confirmClass: 'btn-danger',
+                            cancelText: 'Cancel'
+                        }
+                    ).then(function(confirmed) {
+                        if (confirmed) {
+                            // Show password confirmation modal
+                            BlogUtils.showConfirmation(
+                                'Confirm Password',
+                                `
+                                <p>Please enter your password to confirm account deletion.</p>
+                                <div class="form-group mt-4">
+                                    <input type="password" id="delete-account-password" class="form-control" placeholder="Password" required>
+                                </div>
+                                `,
+                                {
+                                    confirmText: 'Confirm',
+                                    confirmClass: 'btn-danger',
+                                    cancelText: 'Cancel'
+                                }
+                            ).then(function(passwordConfirmed) {
+                                if (passwordConfirmed) {
+                                    const password = document.getElementById('delete-account-password').value;
+                                    
+                                    if (!password) {
+                                        BlogUtils.showToast('Password is required', 'error');
+                                        return;
+                                    }
+                                    
+                                    // Show loading
+                                    BlogUtils.toggleLoading(true);
+                                    
+                                    // Simulate network delay
+                                    setTimeout(function() {
+                                        // Hide loading
+                                        BlogUtils.toggleLoading(false);
+                                        
+                                        // Show success message
+                                        BlogUtils.showToast('Account deleted successfully!', 'success');
+                                        
+                                        // Redirect to home page
+                                        window.location.href = '../index.html';
+                                    }, 2000);
+                                }
+                            });
+                        }
+                    });
+                });
+            }
+        });
+    </script>
+</body>
+</html>
